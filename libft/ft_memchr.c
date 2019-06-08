@@ -1,23 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ftrujill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 22:01:44 by ftrujill          #+#    #+#             */
-/*   Updated: 2018/12/27 12:04:31 by ftrujill         ###   ########.fr       */
+/*   Created: 2018/11/11 16:46:40 by ftrujill          #+#    #+#             */
+/*   Updated: 2018/11/11 17:02:01 by ftrujill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 4127
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include <stdlib.h>
+#include "libft.h"
 
-int				get_next_line(const int fd, char **line);
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	unsigned char	*str;
+	unsigned char	uc;
+	size_t			i;
+	void			*loc;
 
-#endif
+	str = (unsigned char*)s;
+	uc = (unsigned char)c;
+	i = 0;
+	while (i < n)
+	{
+		if (*str == uc)
+		{
+			loc = (void*)str;
+			return (loc);
+		}
+		else
+		{
+			i++;
+			str++;
+		}
+	}
+	return (NULL);
+}

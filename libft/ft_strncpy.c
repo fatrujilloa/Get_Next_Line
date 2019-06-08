@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ftrujill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 22:01:44 by ftrujill          #+#    #+#             */
-/*   Updated: 2018/12/27 12:04:31 by ftrujill         ###   ########.fr       */
+/*   Created: 2018/11/10 21:24:12 by ftrujill          #+#    #+#             */
+/*   Updated: 2018/12/27 11:39:27 by ftrujill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 4127
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include <stdlib.h>
+#include "libft.h"
 
-int				get_next_line(const int fd, char **line);
+char	*ft_strncpy(char *dst, const char *src, size_t len)
+{
+	size_t	i;
+	size_t	min;
 
-#endif
+	i = 0;
+	if (!len)
+		return (dst);
+	min = ft_min(ft_strlen(src), len);
+	if (ft_memnlap_fwd(dst, src, min))
+		return (dst);
+	while (i < min)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	while (i < len)
+		dst[i++] = 0;
+	return (dst);
+}

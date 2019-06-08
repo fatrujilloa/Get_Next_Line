@@ -6,7 +6,7 @@
 /*   By: ftrujill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 17:12:34 by ftrujill          #+#    #+#             */
-/*   Updated: 2018/12/03 00:08:19 by ftrujill         ###   ########.fr       */
+/*   Updated: 2018/12/27 11:34:31 by ftrujill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
-# define MIN(x, y) (x < y ? x : y)
-# define MAX(x, y) (x > y ? x : y)
-# define ABS(x) (x > 0 ? x : -x)
 
 typedef struct	s_list
 {
@@ -27,6 +24,10 @@ typedef struct	s_list
 	struct s_list	*next;
 }				t_list;
 
+int				ft_min_int(int a, int b);
+int				ft_max_int(int a, int b);
+size_t			ft_min(size_t a, size_t b);
+size_t			ft_max(size_t a, size_t b);
 size_t			ft_memlap_fwd(void *s1, void *s2);
 size_t			ft_memnlap_fwd(const void *s1, const void *s2, size_t n);
 size_t			ft_index(char c, char *s);
@@ -34,8 +35,8 @@ size_t			ft_index_uc(unsigned char c, unsigned char *s);
 size_t			ft_memindex(unsigned char c, void *s, size_t n);
 void			*ft_memjoin_alloc(void *s1, void *s2, size_t n1, size_t n2);
 void			*ft_memjoin_allocf(void *s1, void *s2, size_t n1, size_t n2);
-void    		*ft_realloc(void *ptr, size_t size);
-void			ft_strinv(char *s);
+void			*ft_realloc(void *ptr, size_t size);
+void			ft_strrev(char *s);
 void			ft_print_params(int argc, char **argv);
 void			ft_print_tab(char **tab);
 void			*ft_memset(void *b, int c, size_t len);
@@ -92,6 +93,9 @@ void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char const *s, int fd);
 void			ft_putendl_fd(char const *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
+/*
+** List Manipulation
+*/
 t_list			*ft_lstnew(void const *content, size_t content_size);
 void			ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
 void			ft_lstdel(t_list **alst, void (*del)(void *, size_t));
@@ -99,5 +103,6 @@ void			ft_lstadd(t_list **alst, t_list *new);
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void			ft_lstprt(t_list *lst);
+void			ft_lstdelnext(t_list **lst, t_list **prev);
 
 #endif

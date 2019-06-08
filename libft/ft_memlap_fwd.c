@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_memoverlap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ftrujill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 22:01:44 by ftrujill          #+#    #+#             */
-/*   Updated: 2018/12/27 12:04:31 by ftrujill         ###   ########.fr       */
+/*   Created: 2018/11/10 19:09:36 by ftrujill          #+#    #+#             */
+/*   Updated: 2018/11/10 19:32:54 by ftrujill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 4127
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include <stdlib.h>
+#include "libft.h"
 
-int				get_next_line(const int fd, char **line);
+size_t	ft_memlap_fwd(void *s1, void *s2)
+{
+	char	*str1;
+	char	*str2;
+	size_t	i;
 
-#endif
+	str1 = (char*)s1;
+	str2 = (char*)s2;
+	i = 0;
+	while (i < ft_strlen(str1))
+	{
+		if (str1 + i == str2)
+			return (i);
+		else
+			i++;
+	}
+	return (0);
+}

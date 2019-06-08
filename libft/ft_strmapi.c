@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ftrujill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 22:01:44 by ftrujill          #+#    #+#             */
-/*   Updated: 2018/12/27 12:04:31 by ftrujill         ###   ########.fr       */
+/*   Created: 2018/11/17 14:41:06 by ftrujill          #+#    #+#             */
+/*   Updated: 2018/11/17 18:57:05 by ftrujill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 4127
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include <stdlib.h>
+#include "libft.h"
 
-int				get_next_line(const int fd, char **line);
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	char	*cpy;
+	size_t	i;
 
-#endif
+	if (!s || !(cpy = ft_strdup(s)))
+		return (NULL);
+	i = 0;
+	while (cpy && *cpy)
+	{
+		*cpy = f(i++, *cpy);
+		cpy++;
+	}
+	return (cpy - ft_strlen(s));
+}
